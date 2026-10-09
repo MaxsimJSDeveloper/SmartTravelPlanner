@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="SmartTravelPlanner.Views.ErrorDialogWindow"
+        Icon="/Assets/logo.png"
+        Title="Error"
+        Width="420"
+        SizeToContent="Height"
+        MinHeight="170"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner">
+
+    <StackPanel Margin="28"
+                Spacing="14">
+        <TextBlock Text="Error"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="#E53935" />
+        <TextBlock x:Name="MessageTextBlock"
+                   TextWrapping="Wrap" />
+        <Button Content="OK"
+                Click="OnOkClick"
+                HorizontalAlignment="Right"
+                MinWidth="90"
+                Margin="0,8,0,0" />
+    </StackPanel>
+
+</Window>

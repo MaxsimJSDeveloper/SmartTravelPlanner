@@ -1,0 +1,84 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SmartTravelPlanner.App"
+             RequestedThemeVariant="Dark">
+
+    <Application.Styles>
+        <FluentTheme />
+
+        <!-- Dark background for every window -->
+        <Style Selector="Window">
+            <Setter Property="Background" Value="#1E1E1E" />
+        </Style>
+
+        <!-- Amber buttons -->
+        <Style Selector="Button">
+            <Style.Resources>
+                <SolidColorBrush x:Key="ButtonBackground" Color="#B08000" />
+                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#C99400" />
+                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#8F6700" />
+                <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="#4D4220" />
+                <SolidColorBrush x:Key="ButtonForeground" Color="White" />
+                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White" />
+                <SolidColorBrush x:Key="ButtonForegroundPressed" Color="White" />
+                <SolidColorBrush x:Key="ButtonForegroundDisabled" Color="#999999" />
+                <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent" />
+                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent" />
+                <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent" />
+            </Style.Resources>
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="18,10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+
+        <!-- Gray input fields -->
+        <Style Selector="TextBox">
+            <Style.Resources>
+                <SolidColorBrush x:Key="TextControlBackground" Color="#404040" />
+                <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#4A4A4A" />
+                <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#4A4A4A" />
+                <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="#333333" />
+                <SolidColorBrush x:Key="TextControlBorderBrush" Color="Transparent" />
+                <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="Transparent" />
+                <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#B08000" />
+            </Style.Resources>
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12,10" />
+        </Style>
+
+        <!-- Red outline for a field that failed validation -->
+        <!-- NOTE: Style.Resources are not scoped by the selector (they would leak to every TextBox),
+             so the red border is set directly on the template's border element instead. -->
+        <Style Selector="TextBox.error /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="#E53935" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+        <Style Selector="TextBox.error:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="#E53935" />
+        </Style>
+        <Style Selector="TextBox.error:focus /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="#E53935" />
+        </Style>
+
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style Selector="TextBlock.section">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+
+        <Style Selector="TextBlock.hint">
+            <Setter Property="Opacity" Value="0.7" />
+        </Style>
+
+        <Style Selector="TextBlock.field-error">
+            <Setter Property="Foreground" Value="#E53935" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </Application.Styles>
+
+</Application>

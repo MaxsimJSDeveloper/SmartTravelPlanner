@@ -1,0 +1,98 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SmartTravelPlanner.ViewModels"
+        x:Class="SmartTravelPlanner.Views.MapEditorWindow"
+        x:DataType="vm:MapEditorViewModel"
+        Icon="/Assets/logo.png"
+        Title="Map editor"
+        Width="780"
+        Height="560"
+        CanResize="False"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid ColumnDefinitions="*,32,*"
+          Margin="28">
+
+        <!-- Left: existing connections -->
+        <Grid Grid.Column="0"
+              RowDefinitions="Auto,*,Auto">
+
+            <TextBlock Grid.Row="0"
+                       Classes="section"
+                       Text="Existing connections"
+                       Margin="0,0,0,12" />
+
+            <Border Grid.Row="1"
+                    Background="#2A2A2A"
+                    CornerRadius="6"
+                    Padding="12">
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding Connections}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:ConnectionItemViewModel">
+                                <CheckBox IsChecked="{Binding IsSelected}"
+                                          Content="{Binding DisplayText, Mode=OneWay}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        Spacing="12"
+                        Margin="0,16,0,0">
+                <Button Content="Remove Selected" Command="{Binding RemoveSelectedCommand}" />
+                <Button Content="Cancel" Command="{Binding CancelCommand}" MinWidth="90" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Right: add new connection -->
+        <DockPanel Grid.Column="2">
+
+            <Button DockPanel.Dock="Bottom"
+                    Content="Save &amp; Apply"
+                    Command="{Binding SaveAndApplyCommand}"
+                    HorizontalAlignment="Right"
+                    MinWidth="140"
+                    Margin="0,16,0,0" />
+
+            <StackPanel Spacing="6">
+                <TextBlock Classes="section"
+                           Text="Add new connection"
+                           Margin="0,0,0,6" />
+
+                <TextBlock Text="City 1" />
+                <TextBox Text="{Binding City1Field.Text}"
+                         Classes.error="{Binding City1Field.HasError}" />
+                <TextBlock Classes="field-error"
+                           Text="{Binding City1Field.Error}"
+                           IsVisible="{Binding City1Field.HasError}"
+                           TextWrapping="Wrap" />
+
+                <TextBlock Text="City 2" Margin="0,6,0,0" />
+                <TextBox Text="{Binding City2Field.Text}"
+                         Classes.error="{Binding City2Field.HasError}" />
+                <TextBlock Classes="field-error"
+                           Text="{Binding City2Field.Error}"
+                           IsVisible="{Binding City2Field.HasError}"
+                           TextWrapping="Wrap" />
+
+                <TextBlock Text="Distance (km)" Margin="0,6,0,0" />
+                <TextBox Text="{Binding DistanceField.Text}"
+                         Classes.error="{Binding DistanceField.HasError}" />
+                <TextBlock Classes="field-error"
+                           Text="{Binding DistanceField.Error}"
+                           IsVisible="{Binding DistanceField.HasError}"
+                           TextWrapping="Wrap" />
+
+                <Button Content="Add connection"
+                        Command="{Binding AddConnectionCommand}"
+                        HorizontalAlignment="Left"
+                        Margin="0,12,0,0" />
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+
+</Window>

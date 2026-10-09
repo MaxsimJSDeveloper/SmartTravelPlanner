@@ -1,0 +1,105 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:SmartTravelPlanner.ViewModels"
+             x:Class="SmartTravelPlanner.Views.PlannerView"
+             x:DataType="vm:PlannerViewModel">
+
+    <Grid ColumnDefinitions="*,32,*"
+          Margin="32">
+
+        <!-- Left column: welcome, map management, route planning -->
+        <DockPanel Grid.Column="0">
+
+            <StackPanel DockPanel.Dock="Bottom"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                <Button Content="Save" Command="{Binding SaveCommand}" MinWidth="90" />
+                <Button Content="Load" Command="{Binding LoadCommand}" MinWidth="90" />
+                <Button Content="Exit" Command="{Binding ExitCommand}" MinWidth="90" />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock Classes="title"
+                           Text="{Binding WelcomeText, Mode=OneWay}"
+                           TextWrapping="Wrap" />
+
+                <TextBlock Classes="section"
+                           Text="Map management"
+                           Margin="0,12,0,0" />
+                <TextBlock Classes="hint"
+                           Text="{Binding MapStatus, Mode=OneWay}"
+                           TextWrapping="Wrap" />
+                <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,4,0,0">
+                    <Button Content="Load Map" Command="{Binding LoadMapCommand}" MinWidth="120" />
+                    <Button Content="Edit Map" Command="{Binding EditMapCommand}" MinWidth="120" />
+                </StackPanel>
+
+                <TextBlock Classes="section"
+                           Text="Route planning"
+                           Margin="0,16,0,0" />
+
+                <TextBlock Text="Your current location" />
+                <Grid ColumnDefinitions="*,12,Auto">
+                    <TextBox Grid.Column="0"
+                             Text="{Binding LocationField.Text}"
+                             Classes.error="{Binding LocationField.HasError}" />
+                    <Button Grid.Column="2"
+                            Content="Change"
+                            Command="{Binding ChangeLocationCommand}"
+                            MinWidth="100" />
+                </Grid>
+                <TextBlock Classes="field-error"
+                           Text="{Binding LocationField.Error}"
+                           IsVisible="{Binding LocationField.HasError}"
+                           TextWrapping="Wrap" />
+
+                <TextBlock Text="Enter your destination" Margin="0,8,0,0" />
+                <TextBox Text="{Binding DestinationField.Text}"
+                         Classes.error="{Binding DestinationField.HasError}" />
+                <TextBlock Classes="field-error"
+                           Text="{Binding DestinationField.Error}"
+                           IsVisible="{Binding DestinationField.HasError}"
+                           TextWrapping="Wrap" />
+
+                <Button Content="Plan Route"
+                        Command="{Binding PlanRouteCommand}"
+                        HorizontalAlignment="Left"
+                        MinWidth="140"
+                        Margin="0,4,0,0" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Right column: result -->
+        <Grid Grid.Column="2"
+              RowDefinitions="Auto,*,Auto,Auto,Auto">
+
+            <TextBlock Grid.Row="0"
+                       Classes="section"
+                       Text="Result route"
+                       Margin="0,0,0,8" />
+            <TextBox Grid.Row="1"
+                     Text="{Binding RouteText, Mode=OneWay}"
+                     IsReadOnly="True"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalContentAlignment="Top"
+                     VerticalAlignment="Stretch" />
+
+            <TextBlock Grid.Row="2"
+                       Classes="section"
+                       Text="Total distance"
+                       Margin="0,16,0,8" />
+            <TextBox Grid.Row="3"
+                     Text="{Binding TotalDistanceText, Mode=OneWay}"
+                     IsReadOnly="True" />
+
+            <Button Grid.Row="4"
+                    Content="Clear Route"
+                    Command="{Binding ClearRouteCommand}"
+                    HorizontalAlignment="Right"
+                    MinWidth="140"
+                    Margin="0,16,0,0" />
+        </Grid>
+    </Grid>
+
+</UserControl>

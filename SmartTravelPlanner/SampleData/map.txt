@@ -1,0 +1,9 @@
+Kyiv-Lviv,540
+Lviv-Warsaw,400
+Warsaw-Berlin,300
+Kyiv-Minsk,550
+Minsk-Warsaw,550
+Kyiv-Kharkiv,480
+Kyiv-Odesa,475
+Berlin-Prague,350
+Paris-Madrid,1050

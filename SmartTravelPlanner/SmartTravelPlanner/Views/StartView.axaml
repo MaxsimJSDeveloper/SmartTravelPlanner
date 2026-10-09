@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:SmartTravelPlanner.ViewModels"
+             x:Class="SmartTravelPlanner.Views.StartView"
+             x:DataType="vm:StartViewModel">
+
+    <StackPanel Width="360"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Spacing="6">
+
+        <TextBlock Classes="title"
+                   Text="Hello!"
+                   HorizontalAlignment="Center" />
+        <TextBlock Classes="hint"
+                   Text="Enter your name and current location"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,20" />
+
+        <TextBlock Text="Name" />
+        <TextBox Text="{Binding NameField.Text}"
+                 Classes.error="{Binding NameField.HasError}" />
+        <TextBlock Classes="field-error"
+                   Text="{Binding NameField.Error}"
+                   IsVisible="{Binding NameField.HasError}"
+                   TextWrapping="Wrap" />
+
+        <TextBlock Text="Location" Margin="0,8,0,0" />
+        <TextBox Text="{Binding LocationField.Text}"
+                 Classes.error="{Binding LocationField.HasError}" />
+        <TextBlock Classes="field-error"
+                   Text="{Binding LocationField.Error}"
+                   IsVisible="{Binding LocationField.HasError}"
+                   TextWrapping="Wrap" />
+
+        <Button Content="Create Traveler"
+                Command="{Binding CreateTravelerCommand}"
+                HorizontalAlignment="Stretch"
+                Margin="0,20,0,0" />
+
+        <TextBlock Classes="hint"
+                   Text="If you already have a saved profile"
+                   HorizontalAlignment="Center"
+                   Margin="0,24,0,0" />
+        <Button Content="Load Saved Traveler"
+                Command="{Binding LoadSavedTravelerCommand}"
+                HorizontalAlignment="Stretch" />
+    </StackPanel>
+
+</UserControl>

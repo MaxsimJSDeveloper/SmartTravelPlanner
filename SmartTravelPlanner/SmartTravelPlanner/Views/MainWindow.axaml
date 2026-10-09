@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SmartTravelPlanner.ViewModels"
+        xmlns:views="using:SmartTravelPlanner.Views"
+        x:Class="SmartTravelPlanner.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/logo.png"
+        Title="SmartTravelPlanner"
+        Width="980"
+        Height="640"
+        MinWidth="860"
+        MinHeight="580"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="vm:StartViewModel">
+            <views:StartView />
+        </DataTemplate>
+        <DataTemplate DataType="vm:PlannerViewModel">
+            <views:PlannerView />
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <ContentControl Content="{Binding CurrentPage}" />
+
+</Window>
